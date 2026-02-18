@@ -11,16 +11,16 @@ public class CorsConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                                "http://localhost:5173",
-                                "http://192.168.1.117:5173",
-                                "https://analyticsyt.vercel.app"
-                        )
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowedHeaders("*");
+                        .allowedOriginPatterns("*")
+                        //allowed HTTP methods
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        // headers
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
